@@ -70,7 +70,6 @@ class WidgetsRepository implements WidgetsRepositoryContract
     {
         $item = $this->getItemByID($id);
 
-        $item->directive = strip_tags($request->get('directive'));
         $item->view = strip_tags($request->get('view'));
         $item->params = $request->input('params');
         $item->save();

@@ -19,7 +19,6 @@ class WidgetsServiceProvider extends ServiceProvider
         $this->registerConsoleCommands();
         $this->registerPublishes();
         $this->registerRoutes();
-        $this->registerViews();
         $this->registerObservers();
     }
 
@@ -75,16 +74,6 @@ class WidgetsServiceProvider extends ServiceProvider
     }
 
     /**
-     * Регистрация представлений.
-     *
-     * @return void
-     */
-    protected function registerViews(): void
-    {
-        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'admin.module.widgets');
-    }
-
-    /**
      * Регистрация наблюдателей.
      *
      * @return void
@@ -126,6 +115,5 @@ class WidgetsServiceProvider extends ServiceProvider
         // Services
         $this->app->bind('InetStudio\Widgets\Contracts\Services\Back\WidgetsObserverServiceContract', 'InetStudio\Widgets\Services\Back\WidgetsObserverService');
         $this->app->bind('InetStudio\Widgets\Contracts\Services\Back\WidgetsServiceContract', 'InetStudio\Widgets\Services\Back\WidgetsService');
-        $this->app->bind('InetStudio\Widgets\Contracts\Services\Common\WidgetsServiceContract', 'InetStudio\Widgets\Services\Common\WidgetsService');
     }
 }

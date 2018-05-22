@@ -29,6 +29,31 @@ class WidgetsService implements WidgetsServiceContract
     }
 
     /**
+     * Получаем объект модели.
+     *
+     * @param int $id
+     *
+     * @return WidgetModelContract
+     */
+    public function getWidgetObject(int $id = 0)
+    {
+        return $this->repository->getItemByID($id);
+    }
+
+    /**
+     * Получаем объекты по списку id.
+     *
+     * @param array|int $ids
+     * @param bool $returnBuilder
+     *
+     * @return mixed
+     */
+    public function getWidgetsByIDs($ids, bool $returnBuilder = false)
+    {
+        return $this->repository->getItemsByIDs($ids, $returnBuilder);
+    }
+
+    /**
      * Сохраняем модель.
      *
      * @param SaveWidgetRequestContract $request

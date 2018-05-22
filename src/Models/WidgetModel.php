@@ -25,7 +25,7 @@ class WidgetModel extends Model implements WidgetModelContract
      * @var array
      */
     protected $fillable = [
-        'directive', 'view', 'params',
+        'view', 'params',
     ];
 
     /**
