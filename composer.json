@@ -1,0 +1,27 @@
+{
+    "name": "inetstudio/widgets",
+    "description": "Package for widgets",
+    "homepage": "https://github.com/inetstudio/widgets",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Konstantin Bukin",
+        "email": "bukin@inetstudio.ru"
+      }
+    ],
+    "require": {
+      "inetstudio/admin-panel": "1.6.*"
+    },
+    "autoload": {
+      "psr-4": {
+        "InetStudio\\Widgets\\": "src/"
+      }
+    },
+    "extra": {
+      "laravel": {
+        "providers": [
+          "InetStudio\\Widgets\\Providers\\WidgetsServiceProvider"
+        ]
+      }
+    }
+}
