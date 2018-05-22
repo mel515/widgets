@@ -19,6 +19,7 @@ class WidgetsServiceProvider extends ServiceProvider
         $this->registerConsoleCommands();
         $this->registerPublishes();
         $this->registerRoutes();
+        $this->registerViews();
         $this->registerObservers();
     }
 
@@ -57,7 +58,7 @@ class WidgetsServiceProvider extends ServiceProvider
             if (! class_exists('CreateWidgetsTables')) {
                 $timestamp = date('Y_m_d_His', time());
                 $this->publishes([
-                    __DIR__.'/../../database/migrations/create_Widgets_tables.php.stub' => database_path('migrations/'.$timestamp.'_create_Widgets_tables.php'),
+                    __DIR__.'/../../database/migrations/create_widgets_tables.php.stub' => database_path('migrations/'.$timestamp.'_create_widgets_tables.php'),
                 ], 'migrations');
             }
         }
@@ -71,6 +72,16 @@ class WidgetsServiceProvider extends ServiceProvider
     protected function registerRoutes(): void
     {
         $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
+    }
+
+    /**
+     * Регистрация представлений.
+     *
+     * @return void
+     */
+    protected function registerViews(): void
+    {
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'admin.module.widgets');
     }
 
     /**
