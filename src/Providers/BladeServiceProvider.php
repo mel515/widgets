@@ -11,29 +11,16 @@ use Illuminate\Support\ServiceProvider;
 class BladeServiceProvider extends ServiceProvider
 {
     /**
-     * Используемые сервисы.
-     *
-     * @var array
-     */
-    private $services;
-
-    /**
-     * WidgetsController constructor.
-     */
-    public function __construct()
-    {
-        $this->services['widgets'] = app()->make('InetStudio\Widgets\Contracts\Services\Back\WidgetsServiceContract');
-    }
-
-    /**
      * Загрузка сервиса.
      *
      * @return void
      */
     public function boot(): void
     {
-        Blade::directive('widget', function ($expression) {
-            $widget = $this->services['widgets']->getWidgetObject($expression);
+        $widgetsService = app()->make('InetStudio\Widgets\Contracts\Services\Back\WidgetsServiceContract');
+
+        Blade::directive('widget', function ($expression) use ($widgetsService) {
+            $widget = $widgetsService->getWidgetObject($expression);
 
             if ($widget->id) {
                 $view = $widget->view;

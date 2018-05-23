@@ -29,6 +29,22 @@ class WidgetsController extends Controller implements WidgetsControllerContract
     }
 
     /**
+     * Получение объекта.
+     *
+     * @param int $id
+     *
+     * @return SaveResponseContract
+     */
+    public function show(int $id = 0): SaveResponseContract
+    {
+        $item = $this->services['widgets']->getWidgetObject($id);
+
+        return app()->makeWith('InetStudio\Widgets\Contracts\Http\Responses\Back\Widgets\ShowResponseContract', [
+            'item' => $item,
+        ]);
+    }
+
+    /**
      * Создание объекта.
      *
      * @param SaveWidgetRequestContract $request

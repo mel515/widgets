@@ -6,6 +6,6 @@ Route::group([
     'prefix' => 'back',
 ], function () {
     Route::resource('widgets', 'WidgetsControllerContract', ['only' => [
-        'store', 'update',
+        'show', 'store', 'update',
     ], 'as' => 'back']);
 });

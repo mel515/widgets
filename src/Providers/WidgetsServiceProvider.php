@@ -111,6 +111,7 @@ class WidgetsServiceProvider extends ServiceProvider
         // Responses
         $this->app->bind('InetStudio\Widgets\Contracts\Http\Responses\Back\Widgets\DestroyResponseContract', 'InetStudio\Widgets\Http\Responses\Back\Widgets\DestroyResponse');
         $this->app->bind('InetStudio\Widgets\Contracts\Http\Responses\Back\Widgets\SaveResponseContract', 'InetStudio\Widgets\Http\Responses\Back\Widgets\SaveResponse');
+        $this->app->bind('InetStudio\Widgets\Contracts\Http\Responses\Back\Widgets\ShowResponseContract', 'InetStudio\Widgets\Http\Responses\Back\Widgets\ShowResponse');
 
         // Services
         $this->app->bind('InetStudio\Widgets\Contracts\Services\Back\WidgetsObserverServiceContract', 'InetStudio\Widgets\Services\Back\WidgetsObserverService');
