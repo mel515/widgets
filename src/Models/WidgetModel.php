@@ -25,7 +25,7 @@ class WidgetModel extends Model implements WidgetModelContract
      * @var array
      */
     protected $fillable = [
-        'view', 'params',
+        'view', 'params', 'additional_info',
     ];
 
     /**
@@ -35,6 +35,7 @@ class WidgetModel extends Model implements WidgetModelContract
      */
     protected $casts = [
         'params' => 'array',
+        'additional_info' => 'array',
     ];
 
     /**

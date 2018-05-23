@@ -72,6 +72,7 @@ class WidgetsRepository implements WidgetsRepositoryContract
 
         $item->view = strip_tags($request->get('view'));
         $item->params = $request->input('params');
+        $item->additional_info = $request->input('additional_info');
         $item->save();
 
         return $item;
