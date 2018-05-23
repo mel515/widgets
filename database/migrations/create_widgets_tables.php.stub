@@ -9,6 +9,7 @@ class CreateWidgetsTables extends Migration
     {
         Schema::create('widgets', function (Blueprint $table) {
             $table->increments('id');
+            $table->morphs('widgetable');
             $table->string('view');
             $table->json('params')->nullable();
             $table->json('additional_info')->nullable();

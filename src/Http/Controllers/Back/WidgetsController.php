@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use InetStudio\Widgets\Contracts\Http\Requests\Back\SaveWidgetRequestContract;
 use InetStudio\Widgets\Contracts\Http\Controllers\Back\WidgetsControllerContract;
 use InetStudio\Widgets\Contracts\Http\Responses\Back\Widgets\SaveResponseContract;
+use InetStudio\Widgets\Contracts\Http\Responses\Back\Widgets\ShowResponseContract;
 use InetStudio\Widgets\Contracts\Http\Responses\Back\Widgets\DestroyResponseContract;
 
 /**
@@ -33,9 +34,9 @@ class WidgetsController extends Controller implements WidgetsControllerContract
      *
      * @param int $id
      *
-     * @return SaveResponseContract
+     * @return ShowResponseContract
      */
-    public function show(int $id = 0): SaveResponseContract
+    public function show(int $id = 0): ShowResponseContract
     {
         $item = $this->services['widgets']->getWidgetObject($id);
 

@@ -70,6 +70,8 @@ class WidgetsRepository implements WidgetsRepositoryContract
     {
         $item = $this->getItemByID($id);
 
+        $item->widgetable_id = $request->get('widgetable_id');
+        $item->widgetable_type = $request->get('widgetable_type');
         $item->view = strip_tags($request->get('view'));
         $item->params = $request->input('params');
         $item->additional_info = $request->input('additional_info');
