@@ -39,6 +39,6 @@ class WidgetsController extends Controller implements WidgetsControllerContract
     {
         $id = $request->get('id') ?? 0;
 
-        return $this->services['widgetsService']->getWidgetContent($id);
+        return $this->services['widgets']->getWidgetContent($id);
     }
 }
