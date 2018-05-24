@@ -103,6 +103,7 @@ class WidgetsServiceProvider extends ServiceProvider
     {
         // Controllers
         $this->app->bind('InetStudio\Widgets\Contracts\Http\Controllers\Back\WidgetsControllerContract', 'InetStudio\Widgets\Http\Controllers\Back\WidgetsController');
+        $this->app->bind('InetStudio\Widgets\Contracts\Http\Controllers\Front\WidgetsControllerContract', 'InetStudio\Widgets\Http\Controllers\Front\WidgetsController');
 
         // Events
         $this->app->bind('InetStudio\Widgets\Contracts\Events\Back\ModifyWidgetEventContract', 'InetStudio\Widgets\Events\Back\ModifyWidgetEvent');
@@ -127,5 +128,6 @@ class WidgetsServiceProvider extends ServiceProvider
         // Services
         $this->app->bind('InetStudio\Widgets\Contracts\Services\Back\WidgetsObserverServiceContract', 'InetStudio\Widgets\Services\Back\WidgetsObserverService');
         $this->app->bind('InetStudio\Widgets\Contracts\Services\Back\WidgetsServiceContract', 'InetStudio\Widgets\Services\Back\WidgetsService');
+        $this->app->bind('InetStudio\Widgets\Contracts\Services\Front\WidgetsServiceContract', 'InetStudio\Widgets\Services\Front\WidgetsService');
     }
 }

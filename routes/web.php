@@ -9,3 +9,10 @@ Route::group([
         'show', 'store', 'update',
     ], 'as' => 'back']);
 });
+
+Route::group([
+    'namespace' => 'InetStudio\Widgets\Contracts\Http\Controllers\Front',
+    'middleware' => ['web'],
+], function () {
+    Route::post('widgets', 'WidgetsControllerContract@getWidget')->name('front.widgets.get');
+});
