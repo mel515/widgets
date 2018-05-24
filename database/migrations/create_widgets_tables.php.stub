@@ -16,19 +16,19 @@ class CreateWidgetsTables extends Migration
             $table->softDeletes();
         });
 
-        Schema::create('widgetable', function (Blueprint $table) {
+        Schema::create('widgetables', function (Blueprint $table) {
             $table->integer('widget_model_id')->unsigned();
             $table->integer('widgetable_id')->unsigned();
             $table->string('widgetable_type');
             $table->timestamps();
 
-            $table->foreign('widgets_model_id')->references('id')->on('widgets')->onDelete('cascade');
+            $table->foreign('widget_model_id')->references('id')->on('widgets')->onDelete('cascade');
         });
     }
 
     public function down()
     {
         Schema::drop('widgets');
-        Schema::drop('widgetable');
+        Schema::drop('widgetables');
     }
 }
