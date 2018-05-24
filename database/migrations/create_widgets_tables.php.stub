@@ -9,17 +9,26 @@ class CreateWidgetsTables extends Migration
     {
         Schema::create('widgets', function (Blueprint $table) {
             $table->increments('id');
-            $table->morphs('widgetable');
             $table->string('view');
             $table->json('params')->nullable();
             $table->json('additional_info')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
+
+        Schema::create('widgetable', function (Blueprint $table) {
+            $table->integer('widget_model_id')->unsigned();
+            $table->integer('widgetable_id')->unsigned();
+            $table->string('widgetable_type');
+            $table->timestamps();
+
+            $table->foreign('widgets_model_id')->references('id')->on('widgets')->onDelete('cascade');
+        });
     }
 
     public function down()
     {
         Schema::drop('widgets');
+        Schema::drop('widgetable');
     }
 }

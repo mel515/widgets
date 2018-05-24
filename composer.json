@@ -21,6 +21,7 @@
       "laravel": {
         "providers": [
           "InetStudio\\Widgets\\Providers\\BladeServiceProvider",
+          "InetStudio\\Widgets\\Providers\\FormBuilderServiceProvider",
           "InetStudio\\Widgets\\Providers\\WidgetsServiceProvider"
         ]
       }

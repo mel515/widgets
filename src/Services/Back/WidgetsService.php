@@ -86,4 +86,21 @@ class WidgetsService implements WidgetsServiceContract
     {
         return $this->repository->destroy($id);
     }
+
+    /**
+     * Присваиваем виджеты объекту.
+     *
+     * @param $request
+     *
+     * @param $item
+     */
+    public function attachToObject($request, $item)
+    {
+        if ($request->filled('widgets')) {
+            $widgets = explode(',', $request->get('widgets'));
+            $item->syncWidgets($this->repository->getItemsByIDs((array) $widgets));
+        } else {
+            $item->detachWidgets($item->widgets);
+        }
+    }
 }
