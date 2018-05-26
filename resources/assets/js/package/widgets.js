@@ -21,13 +21,18 @@ $.extend(window.Admin.options.tinymce, {
 
 $.extend(window.Admin.modules, {
     widgets: {
-        getWidget: function (widgetID, callback) {
+        getWidget: function () {
+            let widgetID = arguments[0],
+                callback = (1 in arguments) ? arguments[1] : undefined;
+
             $.ajax({
                 url: route('back.widgets.show', widgetID),
                 method: 'GET',
                 dataType: 'json',
                 success: function (widget) {
-                    callback(widget);
+                    if (typeof callback !== 'undefined') {
+                        callback(widget);
+                    }
                 },
                 error: function () {
                     swal({
@@ -38,7 +43,12 @@ $.extend(window.Admin.modules, {
                 }
             });
         },
-        saveWidget: function (widgetID, widgetData, widgetOptions, callback) {
+        saveWidget: function () {
+            let widgetID = arguments[0],
+                widgetData = arguments[1],
+                widgetOptions = arguments[2],
+                callback = (3 in arguments) ? arguments[3] : undefined;
+
             let url = (widgetID !== '') ? route('back.widgets.update', widgetID): route('back.widgets.store');
 
             if (widgetID !== '') {
@@ -55,7 +65,9 @@ $.extend(window.Admin.modules, {
                 success: function (widget) {
                     widgetOptions.editor.execCommand('mceReplaceContent', false, '<img class="content-widget" data-type="'+widgetOptions.type+'" data-id="'+widget.id+'" alt="'+widgetOptions.alt+'" style="height: 100px; width: 100%; border: 1px red solid;" />');
 
-                    callback(widget);
+                    if (typeof callback !== 'undefined') {
+                        callback(widget);
+                    }
                 }
             });
         }
