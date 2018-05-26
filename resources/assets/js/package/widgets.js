@@ -38,7 +38,7 @@ $.extend(window.Admin.modules, {
                 }
             });
         },
-        saveWidget: function (widgetID, widgetData, widgetOptions) {
+        saveWidget: function (widgetID, widgetData, widgetOptions, callback) {
             let url = (widgetID !== '') ? route('back.widgets.update', widgetID): route('back.widgets.store');
 
             if (widgetID !== '') {
@@ -54,6 +54,8 @@ $.extend(window.Admin.modules, {
                 dataType: 'json',
                 success: function (widget) {
                     widgetOptions.editor.execCommand('mceReplaceContent', false, '<img class="content-widget" data-type="'+widgetOptions.type+'" data-id="'+widget.id+'" alt="'+widgetOptions.alt+'" style="height: 100px; width: 100%; border: 1px red solid;" />');
+
+                    callback(widget);
                 }
             });
         }
