@@ -2,7 +2,6 @@
 
 namespace InetStudio\Widgets\Http\Controllers\Front;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use InetStudio\Widgets\Contracts\Http\Controllers\Front\WidgetsControllerContract;
 
@@ -29,16 +28,14 @@ class WidgetsController extends Controller implements WidgetsControllerContract
     /**
      * Получаем содержимое виджета.
      *
-     * @param Request $request
+     * @param int $id
      *
      * @return string
      *
      * @throws \Throwable
      */
-    public function getWidget(Request $request): string
+    public function getWidget(int $id): string
     {
-        $id = $request->get('id') ?? 0;
-
         return $this->services['widgets']->getWidgetContent($id);
     }
 }
