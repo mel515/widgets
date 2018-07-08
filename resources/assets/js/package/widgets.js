@@ -73,3 +73,9 @@ $.extend(window.Admin.modules, {
         }
     }
 });
+
+$(document).ready(function () {
+    $('#embedded_code_modal').on('hidden.bs.modal', function (e) {
+        window.tinymce.get('embedded_code').setContent('');
+    })
+});
