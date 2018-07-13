@@ -14,9 +14,16 @@ use InetStudio\Widgets\Contracts\Http\Requests\Back\SaveWidgetRequestContract;
 class WidgetsService implements WidgetsServiceContract
 {
     /**
+     * Используемые сервисы.
+     *
+     * @var array
+     */
+    public $services = [];
+
+    /**
      * @var WidgetsRepositoryContract
      */
-    private $repository;
+    public $repository;
 
     /**
      * WidgetsService constructor.
@@ -25,6 +32,8 @@ class WidgetsService implements WidgetsServiceContract
      */
     public function __construct(WidgetsRepositoryContract $repository)
     {
+        $this->services['images'] = app()->make('InetStudio\Uploads\Contracts\Services\Back\ImagesServiceContract');
+
         $this->repository = $repository;
     }
 
@@ -102,5 +111,49 @@ class WidgetsService implements WidgetsServiceContract
         } else {
             $item->detachWidgets($item->widgets);
         }
+    }
+
+    /**
+     * Присваиваем изображения виджету.
+     *
+     * @param int $widgetID
+     *
+     * @param string $widgetType
+     */
+    public function attachImagesToWidget(int $widgetID, string $widgetType): void
+    {
+        $widget = $this->getWidgetObject($widgetID);
+
+        $images = (config('widgets.images.conversions.'.$widgetType)) ? array_keys(config('widgets.images.conversions.'.$widgetType)) : [];
+        $this->services['images']->attachToObject(request(), $widget, $images, 'widgets', $widgetType);
+    }
+
+    /**
+     * Возвращаем изображения виджета.
+     *
+     * @param int $widgetID
+     * @param string $collection
+     *
+     * @return array
+     */
+    public function getWidgetImages(int $widgetID, string $collection): array
+    {
+        $widget = $this->getWidgetObject($widgetID);
+        $images = $widget->getMedia($collection);
+
+        $media = [];
+
+        foreach ($images as $mediaItem) {
+            $data = [
+                'id' => $mediaItem->id,
+                'src' => url($mediaItem->getUrl()),
+                'thumb' => ($mediaItem->getUrl($collection.'_admin')) ? url($mediaItem->getUrl($collection.'_admin')) : url($mediaItem->getUrl()),
+                'properties' => $mediaItem->custom_properties,
+            ];
+
+            $media[] = $data;
+        }
+
+        return $media;
     }
 }

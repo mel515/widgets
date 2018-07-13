@@ -43,6 +43,7 @@ class WidgetsServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 'InetStudio\Widgets\Console\Commands\SetupCommand',
+                'InetStudio\Widgets\Console\Commands\CreateFoldersCommand',
             ]);
         }
     }
@@ -54,6 +55,14 @@ class WidgetsServiceProvider extends ServiceProvider
      */
     protected function registerPublishes(): void
     {
+        $this->publishes([
+            __DIR__.'/../../config/widgets.php' => config_path('widgets.php'),
+        ], 'config');
+
+        $this->mergeConfigFrom(
+            __DIR__.'/../../config/filesystems.php', 'filesystems.disks'
+        );
+
         if ($this->app->runningInConsole()) {
             if (! class_exists('CreateWidgetsTables')) {
                 $timestamp = date('Y_m_d_His', time());
@@ -103,6 +112,7 @@ class WidgetsServiceProvider extends ServiceProvider
     {
         // Controllers
         $this->app->bind('InetStudio\Widgets\Contracts\Http\Controllers\Back\WidgetsControllerContract', 'InetStudio\Widgets\Http\Controllers\Back\WidgetsController');
+        $this->app->bind('InetStudio\Widgets\Contracts\Http\Controllers\Back\GalleryWidgetsControllerContract', 'InetStudio\Widgets\Http\Controllers\Back\GalleryWidgetsController');
         $this->app->bind('InetStudio\Widgets\Contracts\Http\Controllers\Front\WidgetsControllerContract', 'InetStudio\Widgets\Http\Controllers\Front\WidgetsController');
 
         // Events
@@ -121,6 +131,8 @@ class WidgetsServiceProvider extends ServiceProvider
         $this->app->bind('InetStudio\Widgets\Contracts\Http\Requests\Back\SaveWidgetRequestContract', 'InetStudio\Widgets\Http\Requests\Back\SaveWidgetRequest');
 
         // Responses
+        $this->app->bind('InetStudio\Widgets\Contracts\Http\Responses\Back\GalleryWidgets\AttachImagesToWidgetResponseContract', 'InetStudio\Widgets\Http\Responses\Back\GalleryWidgets\AttachImagesToWidgetResponse');
+        $this->app->bind('InetStudio\Widgets\Contracts\Http\Responses\Back\GalleryWidgets\GetWidgetImagesResponseContract', 'InetStudio\Widgets\Http\Responses\Back\GalleryWidgets\GetWidgetImagesResponse');
         $this->app->bind('InetStudio\Widgets\Contracts\Http\Responses\Back\Widgets\DestroyResponseContract', 'InetStudio\Widgets\Http\Responses\Back\Widgets\DestroyResponse');
         $this->app->bind('InetStudio\Widgets\Contracts\Http\Responses\Back\Widgets\SaveResponseContract', 'InetStudio\Widgets\Http\Responses\Back\Widgets\SaveResponse');
         $this->app->bind('InetStudio\Widgets\Contracts\Http\Responses\Back\Widgets\ShowResponseContract', 'InetStudio\Widgets\Http\Responses\Back\Widgets\ShowResponse');

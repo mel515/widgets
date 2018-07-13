@@ -8,6 +8,9 @@ Route::group([
     Route::resource('widgets', 'WidgetsControllerContract', ['only' => [
         'show', 'store', 'update',
     ], 'as' => 'back']);
+
+    Route::post('widgets/gallery/save', 'GalleryWidgetsControllerContract@attachImagesToWidget')->name('back.widgets.gallery.save');
+    Route::get('widgets/gallery/get', 'GalleryWidgetsControllerContract@getWidgetImages')->name('back.widgets.gallery.get');
 });
 
 Route::group([

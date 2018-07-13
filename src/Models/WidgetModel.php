@@ -6,11 +6,29 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use InetStudio\AdminPanel\Models\Traits\HasJSONColumns;
 use InetStudio\Widgets\Contracts\Models\WidgetModelContract;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
 
-class WidgetModel extends Model implements WidgetModelContract
+/**
+ * Class WidgetModel.
+ */
+class WidgetModel extends Model implements WidgetModelContract, HasMediaConversions
 {
     use SoftDeletes;
     use HasJSONColumns;
+    use \InetStudio\Uploads\Models\Traits\HasImages;
+
+    const ENTITY_TYPE = 'widget';
+    const BASE_MATERIAL_TYPE = 'widget';
+
+    /**
+     * Конфиг изображений.
+     *
+     * @var array
+     */
+    private $images = [
+        'config' => 'widgets',
+        'model' => '',
+    ];
 
     /**
      * Связанная с моделью таблица.
@@ -48,4 +66,26 @@ class WidgetModel extends Model implements WidgetModelContract
         'updated_at',
         'deleted_at',
     ];
+
+    /**
+     * Геттер атрибута type.
+     *
+     * @return string
+     */
+    public function getTypeAttribute()
+    {
+        return self::ENTITY_TYPE;
+    }
+
+    /**
+     * Геттер атрибута material_type.
+     *
+     * @return string
+     */
+    public function getMaterialTypeAttribute()
+    {
+        $materialType = $this->additional_info['material_type'] ?? self::BASE_MATERIAL_TYPE;
+
+        return $materialType;
+    }
 }
