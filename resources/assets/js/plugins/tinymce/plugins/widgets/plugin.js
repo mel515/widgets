@@ -7,7 +7,7 @@ window.tinymce.PluginManager.add('widgets', function (editor) {
 
             let content = editor.selection.getContent();
             initTinyMCE('#embedded_code_modal');
-            let widgetID = '';
+            let codeWidgetID = '';
 
             if (content !== '' && ! /<img class="content-widget".+data-type="embedded".+\/>/g.test(content)) {
                 swal({
@@ -18,9 +18,9 @@ window.tinymce.PluginManager.add('widgets', function (editor) {
 
                 return false;
             } else if (content !== '') {
-                widgetID = $(content).attr('data-id');
+                codeWidgetID = $(content).attr('data-id');
 
-                window.Admin.modules.widgets.getWidget(widgetID, function (widget) {
+                window.Admin.modules.widgets.getWidget(codeWidgetID, function (widget) {
                     window.tinymce.get('embedded_code').setContent(widget.params.code);
                 });
             }
@@ -31,7 +31,7 @@ window.tinymce.PluginManager.add('widgets', function (editor) {
 
                 let code = window.tinymce.get('embedded_code').getContent();
 
-                window.Admin.modules.widgets.saveWidget(widgetID, {
+                window.Admin.modules.widgets.saveWidget(codeWidgetID, {
                     view: 'admin.module.widgets::front.partials.content.embedded_widget',
                     params: {
                         code: code
