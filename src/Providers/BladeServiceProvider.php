@@ -17,9 +17,9 @@ class BladeServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $widgetsService = app()->make('InetStudio\Widgets\Contracts\Services\Back\WidgetsServiceContract');
+        Blade::directive('widget', function ($expression) {
+            $widgetsService = app()->make('InetStudio\Widgets\Contracts\Services\Back\WidgetsServiceContract');
 
-        Blade::directive('widget', function ($expression) use ($widgetsService) {
             $widget = $widgetsService->getWidgetObject($expression);
 
             if ($widget->id) {
