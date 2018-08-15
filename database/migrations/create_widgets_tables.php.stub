@@ -18,11 +18,12 @@ class CreateWidgetsTables extends Migration
 
         Schema::create('widgetables', function (Blueprint $table) {
             $table->integer('widget_model_id')->unsigned();
-            $table->integer('widgetable_id')->unsigned();
-            $table->string('widgetable_type');
+            $table->morphs('widgetable');
             $table->timestamps();
 
             $table->foreign('widget_model_id')->references('id')->on('widgets')->onDelete('cascade');
+
+            $table->index(['widgetable_id', 'widgetable_type']);
         });
     }
 

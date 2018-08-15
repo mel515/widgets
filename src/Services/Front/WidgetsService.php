@@ -40,7 +40,8 @@ class WidgetsService implements WidgetsServiceContract
             $view = $widget->view;
 
             if (view()->exists($view)) {
-                return view($view, array_merge($widget->params, ['widget' => $widget]));
+                $params = $widget->params;
+                return view($view, array_merge(is_array($params) ? $params : [], ['widget' => $widget]));
             }
         }
 
