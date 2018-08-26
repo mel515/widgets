@@ -2,6 +2,8 @@
 
 namespace InetStudio\Widgets\Providers;
 
+use Collective\Html\FormBuilder;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -20,6 +22,8 @@ class WidgetsServiceProvider extends ServiceProvider
         $this->registerPublishes();
         $this->registerRoutes();
         $this->registerViews();
+        $this->registerFormComponents();
+        $this->registerBladeDirectives();
     }
 
     /**
@@ -80,5 +84,39 @@ class WidgetsServiceProvider extends ServiceProvider
     protected function registerViews(): void
     {
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'admin.module.widgets');
+    }
+
+    /**
+     * Регистрация компонентов форм.
+     *
+     * @return void
+     */
+    protected function registerFormComponents()
+    {
+        FormBuilder::component('widgets', 'admin.module.widgets::back.forms.fields.widgets', ['name' => null, 'value' => null, 'attributes' => null]);
+    }
+
+    /**
+     * Регистрация директив blade.
+     *
+     * @return void
+     */
+    protected function registerBladeDirectives()
+    {
+        Blade::directive('widget', function ($expression) {
+            $widgetsService = app()->make('InetStudio\Widgets\Contracts\Services\Back\WidgetsServiceContract');
+
+            $widget = $widgetsService->getWidgetObject($expression);
+
+            if ($widget->id) {
+                $view = $widget->view;
+
+                if (view()->exists($view)) {
+                    return view($view, $widget->params);
+                }
+            }
+
+            return '';
+        });
     }
 }
