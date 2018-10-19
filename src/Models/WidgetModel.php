@@ -3,15 +3,15 @@
 namespace InetStudio\Widgets\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use InetStudio\AdminPanel\Models\Traits\HasJSONColumns;
 use InetStudio\Widgets\Contracts\Models\WidgetModelContract;
-use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
 
 /**
  * Class WidgetModel.
  */
-class WidgetModel extends Model implements WidgetModelContract, HasMediaConversions
+class WidgetModel extends Model implements WidgetModelContract, HasMedia
 {
     use SoftDeletes;
     use HasJSONColumns;
