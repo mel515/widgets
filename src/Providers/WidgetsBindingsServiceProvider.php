@@ -29,9 +29,7 @@ class WidgetsBindingsServiceProvider extends ServiceProvider
         'InetStudio\Widgets\Contracts\Http\Responses\Back\Widgets\SaveResponseContract' => 'InetStudio\Widgets\Http\Responses\Back\Widgets\SaveResponse',
         'InetStudio\Widgets\Contracts\Http\Responses\Back\Widgets\ShowResponseContract' => 'InetStudio\Widgets\Http\Responses\Back\Widgets\ShowResponse',
         'InetStudio\Widgets\Contracts\Models\WidgetModelContract' => 'InetStudio\Widgets\Models\WidgetModel',
-        'InetStudio\Widgets\Contracts\Observers\WidgetObserverContract' => 'InetStudio\Widgets\Observers\WidgetObserver',
         'InetStudio\Widgets\Contracts\Repositories\WidgetsRepositoryContract' => 'InetStudio\Widgets\Repositories\WidgetsRepository',
-        'InetStudio\Widgets\Contracts\Services\Back\WidgetsObserverServiceContract' => 'InetStudio\Widgets\Services\Back\WidgetsObserverService',
         'InetStudio\Widgets\Contracts\Services\Back\WidgetsServiceContract' => 'InetStudio\Widgets\Services\Back\WidgetsService',
         'InetStudio\Widgets\Contracts\Services\Front\WidgetsServiceContract' => 'InetStudio\Widgets\Services\Front\WidgetsService',
     ];
