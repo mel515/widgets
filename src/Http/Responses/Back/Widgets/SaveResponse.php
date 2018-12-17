@@ -36,8 +36,6 @@ class SaveResponse implements SaveResponseContract, Responsable
      */
     public function toResponse($request): JsonResponse
     {
-        return response()->json([
-            'id' => $this->item->id,
-        ]);
+        return response()->json($this->item);
     }
 }
