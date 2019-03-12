@@ -3,6 +3,7 @@
 namespace InetStudio\Widgets\Services\Back;
 
 use Illuminate\Support\Facades\Session;
+use InetStudio\AdminPanel\Base\Services\Back\BaseService;
 use InetStudio\Widgets\Contracts\Models\WidgetModelContract;
 use InetStudio\Widgets\Contracts\Services\Back\WidgetsServiceContract;
 use InetStudio\Widgets\Contracts\Repositories\WidgetsRepositoryContract;
@@ -11,7 +12,7 @@ use InetStudio\Widgets\Contracts\Http\Requests\Back\SaveWidgetRequestContract;
 /**
  * Class WidgetsService.
  */
-class WidgetsService implements WidgetsServiceContract
+class WidgetsService extends BaseService implements WidgetsServiceContract
 {
     /**
      * Используемые сервисы.
@@ -32,6 +33,8 @@ class WidgetsService implements WidgetsServiceContract
      */
     public function __construct(WidgetsRepositoryContract $repository)
     {
+        parent::__construct(app()->make('InetStudio\Widgets\Contracts\Models\WidgetModelContract'));
+
         $this->services['images'] = app()->make('InetStudio\Uploads\Contracts\Services\Back\ImagesServiceContract');
 
         $this->repository = $repository;
@@ -82,18 +85,6 @@ class WidgetsService implements WidgetsServiceContract
         Session::flash('success', 'Виджет «'.$item->name.'» успешно '.$action);
 
         return $item;
-    }
-
-    /**
-     * Удаляем модель.
-     *
-     * @param $id
-     *
-     * @return bool
-     */
-    public function destroy(int $id): ?bool
-    {
-        return $this->repository->destroy($id);
     }
 
     /**
