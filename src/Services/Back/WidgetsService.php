@@ -3,7 +3,7 @@
 namespace InetStudio\Widgets\Services\Back;
 
 use Illuminate\Support\Facades\Session;
-use InetStudio\AdminPanel\Base\Services\Back\BaseService;
+use InetStudio\AdminPanel\Base\Services\BaseService;
 use InetStudio\Widgets\Contracts\Models\WidgetModelContract;
 use InetStudio\Widgets\Contracts\Services\Back\WidgetsServiceContract;
 use InetStudio\Widgets\Contracts\Repositories\WidgetsRepositoryContract;
