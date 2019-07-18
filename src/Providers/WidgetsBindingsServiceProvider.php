@@ -24,6 +24,7 @@ class WidgetsBindingsServiceProvider extends ServiceProvider implements Deferrab
         'InetStudio\Widgets\Contracts\Http\Responses\Back\Widgets\DestroyResponseContract' => 'InetStudio\Widgets\Http\Responses\Back\Widgets\DestroyResponse',
         'InetStudio\Widgets\Contracts\Http\Responses\Back\Widgets\SaveResponseContract' => 'InetStudio\Widgets\Http\Responses\Back\Widgets\SaveResponse',
         'InetStudio\Widgets\Contracts\Http\Responses\Back\Widgets\ShowResponseContract' => 'InetStudio\Widgets\Http\Responses\Back\Widgets\ShowResponse',
+        'InetStudio\Widgets\Contracts\Models\WidgetableModelContract' => 'InetStudio\Widgets\Models\WidgetableModel',
         'InetStudio\Widgets\Contracts\Models\WidgetModelContract' => 'InetStudio\Widgets\Models\WidgetModel',
         'InetStudio\Widgets\Contracts\Repositories\WidgetsRepositoryContract' => 'InetStudio\Widgets\Repositories\WidgetsRepository',
         'InetStudio\Widgets\Contracts\Services\Back\WidgetsServiceContract' => 'InetStudio\Widgets\Services\Back\WidgetsService',

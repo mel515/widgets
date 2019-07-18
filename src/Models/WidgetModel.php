@@ -2,7 +2,9 @@
 
 namespace InetStudio\Widgets\Models;
 
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use InetStudio\AdminPanel\Models\Traits\HasJSONColumns;
@@ -87,5 +89,22 @@ class WidgetModel extends Model implements WidgetModelContract, HasMedia
         $materialType = $this->additional_info['material_type'] ?? self::BASE_MATERIAL_TYPE;
 
         return $materialType;
+    }
+
+    /**
+     * Отношение "один ко многим" с моделью "ссылок" на материалы.
+     *
+     * @return HasMany
+     *
+     * @throws BindingResolutionException
+     */
+    public function widgetables(): HasMany
+    {
+        $widgetableModel = app()->make('InetStudio\Widgets\Contracts\Models\WidgetableModelContract');
+
+        return $this->hasMany(
+            get_class($widgetableModel),
+            'widget_model_id'
+        );
     }
 }
