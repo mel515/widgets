@@ -2,7 +2,7 @@
 
 namespace InetStudio\Widgets\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
+use InetStudio\AdminPanel\Base\Http\Controllers\Controller;
 use InetStudio\Widgets\Contracts\Http\Controllers\Front\WidgetsControllerContract;
 
 /**

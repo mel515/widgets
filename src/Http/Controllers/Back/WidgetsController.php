@@ -2,7 +2,7 @@
 
 namespace InetStudio\Widgets\Http\Controllers\Back;
 
-use App\Http\Controllers\Controller;
+use InetStudio\AdminPanel\Base\Http\Controllers\Controller;
 use InetStudio\Widgets\Contracts\Http\Requests\Back\SaveWidgetRequestContract;
 use InetStudio\Widgets\Contracts\Http\Controllers\Back\WidgetsControllerContract;
 use InetStudio\Widgets\Contracts\Http\Responses\Back\Widgets\SaveResponseContract;
