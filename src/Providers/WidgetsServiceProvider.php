@@ -13,8 +13,6 @@ class WidgetsServiceProvider extends ServiceProvider
 {
     /**
      * Загрузка сервиса.
-     *
-     * @return void
      */
     public function boot(): void
     {
@@ -28,8 +26,6 @@ class WidgetsServiceProvider extends ServiceProvider
 
     /**
      * Регистрация команд.
-     *
-     * @return void
      */
     protected function registerConsoleCommands(): void
     {
@@ -43,8 +39,6 @@ class WidgetsServiceProvider extends ServiceProvider
 
     /**
      * Регистрация ресурсов.
-     *
-     * @return void
      */
     protected function registerPublishes(): void
     {
@@ -68,8 +62,6 @@ class WidgetsServiceProvider extends ServiceProvider
 
     /**
      * Регистрация путей.
-     *
-     * @return void
      */
     protected function registerRoutes(): void
     {
@@ -78,8 +70,6 @@ class WidgetsServiceProvider extends ServiceProvider
 
     /**
      * Регистрация представлений.
-     *
-     * @return void
      */
     protected function registerViews(): void
     {
@@ -88,8 +78,6 @@ class WidgetsServiceProvider extends ServiceProvider
 
     /**
      * Регистрация компонентов форм.
-     *
-     * @return void
      */
     protected function registerFormComponents()
     {
@@ -98,8 +86,6 @@ class WidgetsServiceProvider extends ServiceProvider
 
     /**
      * Регистрация директив blade.
-     *
-     * @return void
      */
     protected function registerBladeDirectives()
     {

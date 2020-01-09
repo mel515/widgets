@@ -33,8 +33,6 @@ class SetupCommand extends Command
 
     /**
      * Запуск команды.
-     *
-     * @return void
      */
     public function handle(): void
     {
@@ -63,8 +61,6 @@ class SetupCommand extends Command
 
     /**
      * Инициализация команд.
-     *
-     * @return void
      */
     private function initCommands(): void
     {
@@ -82,11 +78,6 @@ class SetupCommand extends Command
                 'type' => 'artisan',
                 'description' => 'Migration',
                 'command' => 'migrate',
-            ],
-            [
-                'type' => 'cli',
-                'description' => 'Composer dump',
-                'command' => 'composer dump-autoload',
             ],
         ];
     }

@@ -43,8 +43,6 @@ trait HasWidgets
      * Attach the given widget(s) to the model.
      *
      * @param int|string|array|\ArrayAccess|WidgetModelContract $widgets
-     *
-     * @return void
      */
     public function setWidgetsAttribute($widgets)
     {
@@ -59,8 +57,6 @@ trait HasWidgets
 
     /**
      * Boot the widgetable trait for a model.
-     *
-     * @return void
      */
     public static function bootHasWidgets()
     {
@@ -320,8 +316,6 @@ trait HasWidgets
      *
      * @param int|string|array|\ArrayAccess|WidgetModelContract $widgets
      * @param string $action
-     *
-     * @return void
      */
     protected function setWidgets($widgets, string $action)
     {
