@@ -16,7 +16,7 @@
                         <base-wysiwyg
                             label = "Код"
                             name = "embedded_code"
-                            v-bind:value.sync="model.additional_info.code"
+                            v-bind:value.sync="model.params.code"
                             v-bind:simple = true
                             v-bind:attributes = "{
                                 'id': 'embedded_code',
@@ -47,7 +47,7 @@
         },
         events: {
           widgetLoaded: function(component) {
-            window.tinymce.get('embedded_code').setContent(component.model.additional_info.code);
+            window.tinymce.get('embedded_code').setContent(component.model.params.code);
           },
         },
       };
@@ -83,7 +83,7 @@
       save() {
         let component = this;
 
-        if (_.get(component.model.additional_info, 'code', '') === '') {
+        if (_.get(component.model.params, 'code', '') === '') {
           $(component.$refs.modal).modal('hide');
 
           return;
